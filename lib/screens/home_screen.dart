@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_music_application/model/play_list_model.dart';
+import 'package:flutter_music_application/model/song_model.dart';
+import 'package:flutter_music_application/widget/play_list_widget.dart';
 import 'package:flutter_music_application/widget/section_header.dart';
 import 'package:flutter_music_application/widget/trendin_music_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final songs = Song.songs;
+    final playlist = PlayList.playlists;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -49,13 +53,35 @@ class HomeScreen extends StatelessWidget {
               title: 'Trending',
             ),
             SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: SizedBox(
+                  height: 250,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: songs.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return TrendingMusicWidget(
+                        songs: songs[index],
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            SectionHeader(
+              title: 'Play Lists',
+            ),
+            SliverToBoxAdapter(
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 27,
+                height: 300,
                 child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 3,
+                  scrollDirection: Axis.vertical,
+                  itemCount: playlist.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return TrendingMusicWidget();
+                    return PlayListWidget(
+                      playList: playlist[index],
+                    );
                   },
                 ),
               ),
