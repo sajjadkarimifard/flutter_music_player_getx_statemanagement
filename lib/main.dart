@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_music_application/screens/home_screen.dart';
+import 'package:flutter_music_application/screens/song_screen.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       ),
       getPages: [
         GetPage(name: '/', page: () => const HomeScreen()),
-        GetPage(name: '/song', page: () => const HomeScreen()),
+        GetPage(name: '/song', page: () => const SongScreen()),
         GetPage(name: '/playlist', page: () => const HomeScreen()),
       ],
 
