@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_music_application/screens/home_screen.dart';
+import 'package:flutter_music_application/screens/play_list_screen.dart';
 import 'package:flutter_music_application/screens/song_screen.dart';
 import 'package:get/get.dart';
 
@@ -25,28 +26,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/song', page: () => const SongScreen()),
         GetPage(name: '/playlist', page: () => const HomeScreen()),
       ],
-
-      home: DashboardScreen(),
-      // Scaffold(
-      //   body: Stack(
-      //     fit: StackFit.expand,
-      //     children: [
-      //       Image.asset(
-      //         'assets/images/a.png',
-      //         fit: BoxFit.cover,
-      //       ),
-      //       ShaderMask(
-      //         blendMode: BlendMode.dstOut,
-      //         shaderCallback: (rec) {
-      //           return LinearGradient(colors: [
-      //             Colors.deepPurple.shade100,
-      //           ]);
-      //         },
-      //         child: Container(),
-      //       ),
-      //     ],
-      //   ),
-      // ),
+      home: PlayListScreen(),
     );
   }
 }

@@ -58,27 +58,30 @@ class _SeekBarState extends State<SeekBar> {
               thumbColor: Colors.white,
               overlayColor: Colors.white,
             ),
-            child: Slider(
-              min: 0,
-              max: widget.duration.inMilliseconds.toDouble(),
-              value: min(
-                dragValue ?? widget.position.inMilliseconds.toDouble(),
-                widget.duration.inMilliseconds.toDouble(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2),
+              child: Slider(
+                min: 0,
+                max: widget.duration.inMilliseconds.toDouble(),
+                value: min(
+                  dragValue ?? widget.position.inMilliseconds.toDouble(),
+                  widget.duration.inMilliseconds.toDouble(),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    dragValue = value;
+                  });
+                  if (widget.onChanged != null) {
+                    widget.onChanged!(Duration(milliseconds: value.round()));
+                  }
+                },
+                onChangeEnd: (value) {
+                  if (widget.onChangeEnd != null) {
+                    widget.onChangeEnd!(Duration(milliseconds: value.round()));
+                  }
+                  dragValue = null;
+                },
               ),
-              onChanged: (value) {
-                setState(() {
-                  dragValue = value;
-                });
-                if (widget.onChanged != null) {
-                  widget.onChanged!(Duration(milliseconds: value.round()));
-                }
-              },
-              onChangeEnd: (value) {
-                if (widget.onChangeEnd != null) {
-                  widget.onChangeEnd!(Duration(milliseconds: value.round()));
-                }
-                dragValue = null;
-              },
             ),
           ),
         ),
